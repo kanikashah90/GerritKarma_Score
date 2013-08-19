@@ -1,13 +1,13 @@
-cookbook-plugin hello
-=====================
+cookbook-plugin hello-project
+=============================
 
 NAME
 ----
-say-hello - Print our "Hello <user>!" message
+hello-project - Print our "Hello <user>!" message
 
 SYNOPSIS
 --------
->     POST /changes/{change-id}/revisions/{revision-id}/cookbook-plugin~say-hello
+>     POST /projects/{project-name}/cookbook-plugin~hello-project
 
 DESCRIPTION
 -----------
@@ -31,16 +31,16 @@ EXAMPLES
 
 Have the server say Hello to the user
 
->     curl -X POST --digest --user joe:secret http://host:port/a/changes/1/revisions/1/cookbook~say-hello
-> "Hello joe from change 1, patch set 1!"
+>     curl -X POST --digest --user joe:secret http://host:port/a/projects/foo/cookbook~hello-project
+> "Hello joe from project foo!"
 
 Have the server say Bonjour to François
 
 >     curl -X POST -H "Content-Type: application/json" \
 >       -d '{message: "François", french: true}' \
 >       --digest --user joe:secret \
->       http://host:port/a/changes/1/revisions/1/cookbook~say-hello
-> "Bonjour François from change 1, patch set 1!"
+>       http://host:port/a/projects/foo/cookbook~hello-project
+> "Bonjour François from project foo!"
 
 SEE ALSO
 --------
