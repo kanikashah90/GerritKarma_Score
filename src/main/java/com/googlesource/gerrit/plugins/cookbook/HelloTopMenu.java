@@ -14,26 +14,27 @@
 
 package com.googlesource.gerrit.plugins.cookbook;
 
-import static com.google.gerrit.server.change.RevisionResource.REVISION_KIND;
-import static com.google.gerrit.server.project.ProjectResource.PROJECT_KIND;
+import java.util.List;
 
-import com.google.gerrit.extensions.registration.DynamicSet;
-import com.google.gerrit.extensions.restapi.RestApiModule;
+import com.google.common.collect.Lists;
+import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.extensions.webui.TopMenu;
-import com.google.inject.AbstractModule;
+import com.google.inject.Inject;
 
-public class Module extends AbstractModule {
+public class HelloTopMenu implements TopMenu {
+  private final List<MenuEntry> menuEntries;
+
+  @Inject
+  public HelloTopMenu(@PluginName String pluginName) {
+    String baseUrl = "/plugins/" + pluginName + "/";
+    List<MenuItem> menuItems = Lists.newArrayListWithCapacity(1);
+    menuItems.add(new MenuItem("Documentation", baseUrl));
+    menuEntries = Lists.newArrayListWithCapacity(1);
+    menuEntries.add(new MenuEntry("Cookbook", menuItems));
+  }
 
   @Override
-  protected void configure() {
-    DynamicSet.bind(binder(), TopMenu.class)
-        .to(HelloTopMenu.class);
-    install(new RestApiModule() {
-      @Override
-      protected void configure() {
-        post(REVISION_KIND, "hello-revision").to(HelloRevisionAction.class);
-        post(PROJECT_KIND, "hello-project").to(HelloProjectAction.class);
-      }
-    });
+  public List<MenuEntry> getEntries() {
+      return menuEntries;
   }
 }
