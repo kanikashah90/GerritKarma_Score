@@ -31,6 +31,8 @@ public class HelloTopMenu implements TopMenu {
     menuItems.add(new MenuItem("Documentation", baseUrl));
     menuEntries = Lists.newArrayListWithCapacity(1);
     menuEntries.add(new MenuEntry("Cookbook", menuItems));
+    menuEntries.add(new MenuEntry("Projects", Lists.newArrayList(
+        new MenuItem("Browse Repositories", "https://gerrit.googlesource.com/"))));
   }
 
   @Override
