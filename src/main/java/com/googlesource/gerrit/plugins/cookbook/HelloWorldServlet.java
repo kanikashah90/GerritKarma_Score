@@ -22,11 +22,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gerrit.extensions.annotations.PluginName;
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Singleton
 class HelloWorldServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
+  private static final Logger log = LoggerFactory.getLogger(HelloWorldServlet.class);
+
+  @Inject
+  public HelloWorldServlet(@PluginName String pluginName) {
+    log.info("Cookbook Plugin '" + pluginName + "'");
+  }
 
   @Override
   protected void doGet(final HttpServletRequest req,
