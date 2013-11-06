@@ -29,7 +29,7 @@ public class HelloTopMenu implements TopMenu {
     String baseUrl = "/plugins/" + pluginName + "/";
     List<MenuItem> menuItems = Lists.newArrayListWithCapacity(1);
     menuItems.add(new MenuItem("Documentation", baseUrl));
-    menuEntries = Lists.newArrayListWithCapacity(1);
+    menuEntries = Lists.newArrayListWithCapacity(2);
     menuEntries.add(new MenuEntry("Cookbook", menuItems));
     menuEntries.add(new MenuEntry("Projects", Lists.newArrayList(
         new MenuItem("Browse Repositories", "https://gerrit.googlesource.com/"))));
