@@ -18,5 +18,12 @@ Gerrit.install(function(self) {
           + c.id
           + ", revision: " + r.name);
     }
+    function onSubmitChange(c, r) {
+      return confirm("Really submit change:\n"
+          + c.id + "\n"
+          + "revision: " + r.name
+          + "?");
+    }
     Gerrit.on('showchange', onShowChange);
+    Gerrit.on('submitchange', onSubmitChange);
   });
