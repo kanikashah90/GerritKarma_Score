@@ -24,6 +24,10 @@ Gerrit.install(function(self) {
           + "revision: " + r.name
           + "?");
     }
+    function onHistory(t) {
+      console.log("History: " + t);
+    }
     Gerrit.on('showchange', onShowChange);
     Gerrit.on('submitchange', onSubmitChange);
+    Gerrit.on('history', onHistory);
   });
