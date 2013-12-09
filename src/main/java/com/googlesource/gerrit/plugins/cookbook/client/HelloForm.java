@@ -14,7 +14,7 @@
 
 package com.googlesource.gerrit.plugins.cookbook.client;
 
-import com.google.gerrit.plugin.client.Plugin;
+import com.google.gerrit.plugin.client.PluginEntryPoint;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -34,13 +34,13 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.googlesource.gerrit.plugins.cookbook.HelloTopMenu;
 
-public class HelloForm extends Plugin {
+public class HelloForm extends PluginEntryPoint {
   private DialogBox dialogBox;
   private TextBox usernameTxt;
   private TextArea greetingTxt;
 
   @Override
-  public void onModuleLoad() {
+  public void onPluginLoad() {
     dialogBox = new DialogBox(false, false);
     dialogBox.setText("Greetings dialog");
     dialogBox.setAnimationEnabled(true);
