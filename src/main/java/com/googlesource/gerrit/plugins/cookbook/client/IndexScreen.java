@@ -14,7 +14,7 @@
 
 package com.googlesource.gerrit.plugins.cookbook.client;
 
-import com.google.gerrit.plugin.client.PluginEntryPoint;
+import com.google.gerrit.plugin.client.screen.Screen;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -24,29 +24,26 @@ import com.google.gwt.event.dom.client.KeyPressHandler;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.DialogBox;
-import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Panel;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.googlesource.gerrit.plugins.cookbook.HelloTopMenu;
 
-public class HelloForm extends PluginEntryPoint {
-  private DialogBox dialogBox;
+class IndexScreen extends VerticalPanel {
+  static class Factory implements Screen.EntryPoint {
+    @Override
+    public void onLoad(Screen screen) {
+      screen.setPageTitle("cookbook index");
+      screen.show(new IndexScreen());
+    }
+  }
+
   private TextBox usernameTxt;
   private TextArea greetingTxt;
 
-  @Override
-  public void onPluginLoad() {
-    dialogBox = new DialogBox(false, false);
-    dialogBox.setText("Greetings dialog");
-    dialogBox.setAnimationEnabled(true);
-
-    Panel p = new VerticalPanel();
-    p.setStyleName("panel");
+  IndexScreen() {
+    setStyleName("cookbook-panel");
 
     Panel usernamePanel = new VerticalPanel();
     usernamePanel.add(new Label("Username:"));
@@ -75,7 +72,7 @@ public class HelloForm extends PluginEntryPoint {
     usernameTxt.sinkEvents(Event.ONPASTE);
     usernameTxt.setVisibleLength(40);
     usernamePanel.add(usernameTxt);
-    p.add(usernamePanel);
+    add(usernamePanel);
 
     Panel messagePanel = new VerticalPanel();
     messagePanel.add(new Label("Message:"));
@@ -90,43 +87,18 @@ public class HelloForm extends PluginEntryPoint {
     greetingTxt.setCharacterWidth(80);
     greetingTxt.getElement().setPropertyBoolean("spellcheck", false);
     messagePanel.add(greetingTxt);
-    p.add(messagePanel);
+    add(messagePanel);
 
-    HorizontalPanel buttons = new HorizontalPanel();
-    p.add(buttons);
-
-    final Button helloButton = new Button("Say Hello");
-    helloButton.addStyleName("helloButton");
+    Button helloButton = new Button("Say Hello");
+    helloButton.addStyleName("cookbook-helloButton");
     helloButton.addClickHandler(new ClickHandler() {
       @Override
       public void onClick(final ClickEvent event) {
         sayHello();
       }
     });
-    buttons.add(helloButton);
+    add(helloButton);
     helloButton.setEnabled(true);
-
-    Button closeButton = new Button("Close");
-    closeButton.addClickHandler(new ClickHandler() {
-      public void onClick(ClickEvent event) {
-        hide();
-      }
-    });
-    buttons.add(closeButton);
-
-    dialogBox.setWidget(p);
-
-    RootPanel rootPanel = RootPanel.get(HelloTopMenu.MENU_ID);
-    rootPanel.getElement().removeAttribute("href");
-    rootPanel.addDomHandler(new ClickHandler() {
-        @Override
-        public void onClick(ClickEvent event) {
-          dialogBox.center();
-          dialogBox.show();
-          usernameTxt.setFocus(true);
-          helloButton.setEnabled(true);
-        }
-    }, ClickEvent.getType());
   }
 
   private void sayHello() {
@@ -148,11 +120,5 @@ public class HelloForm extends PluginEntryPoint {
     sb.append(", ");
     sb.append(greeting.isEmpty() ? "what's up?" : greeting);
     Window.alert(sb.toString());
-  }
-
-  private void hide() {
-    dialogBox.hide();
-    usernameTxt.setValue("");
-    greetingTxt.setValue("");
   }
 }

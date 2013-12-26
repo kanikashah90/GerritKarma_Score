@@ -25,6 +25,6 @@
   <!-- resources to the plugin. No theme inherits lines were      -->
   <!-- added in order to make this plugin as simple as possible   -->
   <!-- Specify the app entry point class.                         -->
-  <entry-point class="com.googlesource.gerrit.plugins.cookbook.client.HelloForm"/>
+  <entry-point class="com.googlesource.gerrit.plugins.cookbook.client.CookBookPlugin"/>
   <stylesheet src="cookbook.css"/>
 </module>
