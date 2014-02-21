@@ -49,6 +49,8 @@ limitations under the License.
 
               <Gerrit-ApiType>${Gerrit-ApiType}</Gerrit-ApiType>
               <Gerrit-ApiVersion>${Gerrit-ApiVersion}</Gerrit-ApiVersion>
+              <Gerrit-PluginName>cookbook</Gerrit-PluginName>
+
             </manifestEntries>
           </archive>
         </configuration>
