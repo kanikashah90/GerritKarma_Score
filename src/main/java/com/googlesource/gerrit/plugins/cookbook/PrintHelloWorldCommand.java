@@ -30,7 +30,7 @@ public final class PrintHelloWorldCommand extends SshCommand {
   private boolean french = false;
 
   @Override
-  public void run() throws UnloggedFailure, Failure, Exception {
+  public void run() {
     final String greeting = (french ? "Bonjour " : "Hello ");
     // Note the use of '\n' instead of println to keep platform-agnostic line
     // terminator.
