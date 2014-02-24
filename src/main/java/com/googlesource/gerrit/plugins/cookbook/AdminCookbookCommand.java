@@ -1,4 +1,4 @@
-// Copyright (C) 2013 The Android Open Source Project
+// Copyright (C) 2014 The Android Open Source Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,26 +14,16 @@
 
 package com.googlesource.gerrit.plugins.cookbook;
 
+import com.google.gerrit.extensions.annotations.RequiresCapability;
 import com.google.gerrit.sshd.CommandMetaData;
 import com.google.gerrit.sshd.SshCommand;
 
-import org.kohsuke.args4j.Argument;
-import org.kohsuke.args4j.Option;
-
-@CommandMetaData(name = "print", description = "Print greeting in different languages")
-public final class PrintHelloWorldCommand extends SshCommand {
-
-  @Argument(usage = "name of user")
-  private String name = "world";
-
-  @Option(name = "--french", usage = "output in French?")
-  private boolean french = false;
+@RequiresCapability(AdminCookbookCapability.ADMIN_COOKBOOK)
+@CommandMetaData(name = "admin", description = "Administrate the cookbook")
+public final class AdminCookbookCommand extends SshCommand {
 
   @Override
-  public void run() {
-    final String greeting = (french ? "Bonjour " : "Hello ");
-    // Note the use of '\n' instead of println to keep platform-agnostic line
-    // terminator.
-    stdout.print(greeting + name + "!\n");
+  protected void run() {
+    stdout.print("Hello, cookbook administrator\n");
   }
 }

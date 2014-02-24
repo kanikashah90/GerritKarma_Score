@@ -6,7 +6,7 @@ gerrit_plugin(
   resources = glob(['src/main/**/*']),
   gwt_module = MODULE,
   manifest_entries = [
-    'Gerrit-PluginName: cookbook-plugin',
+    'Gerrit-PluginName: cookbook',
     'Gerrit-Module: com.googlesource.gerrit.plugins.cookbook.Module',
     'Gerrit-HttpModule: com.googlesource.gerrit.plugins.cookbook.HttpModule',
     'Gerrit-SshModule: com.googlesource.gerrit.plugins.cookbook.SshModule',
