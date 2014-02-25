@@ -66,5 +66,11 @@ public class Module extends AbstractModule {
     bind(ProjectConfigEntry.class)
        .annotatedWith(Exports.named("greet-number-per-year"))
        .toInstance(new ProjectConfigEntry("Greets Per Year", 4711L, true));
+    bind(ProjectConfigEntry.class)
+       .annotatedWith(Exports.named("reviewers"))
+        .toInstance(
+            new ProjectConfigEntry("Reviewers", null,
+                ProjectConfigEntry.Type.ARRAY, null, false,
+                "Users or groups can be provided as reviewers"));
   }
 }
