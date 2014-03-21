@@ -21,6 +21,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.gerrit.extensions.annotations.Exports;
 import com.google.gerrit.extensions.registration.DynamicSet;
 import com.google.gerrit.extensions.restapi.RestApiModule;
+import com.google.gerrit.extensions.webui.PatchSetWebLink;
 import com.google.gerrit.extensions.webui.TopMenu;
 import com.google.gerrit.reviewdb.client.Project.InheritableBoolean;
 import com.google.gerrit.server.config.ProjectConfigEntry;
@@ -32,6 +33,7 @@ public class Module extends AbstractModule {
   protected void configure() {
     DynamicSet.bind(binder(), TopMenu.class)
         .to(HelloTopMenu.class);
+    DynamicSet.bind(binder(), PatchSetWebLink.class).to(HelloWeblink.class);
     install(new RestApiModule() {
       @Override
       protected void configure() {
