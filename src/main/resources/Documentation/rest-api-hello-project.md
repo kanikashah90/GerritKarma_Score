@@ -7,7 +7,7 @@ hello-project - Print our "Hello <user>!" message
 
 SYNOPSIS
 --------
->     POST /projects/{project-name}/cookbook-plugin~hello-project
+>     POST /projects/{project-name}/cookbook~hello-project
 
 DESCRIPTION
 -----------
