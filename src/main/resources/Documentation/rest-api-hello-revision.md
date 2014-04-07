@@ -7,7 +7,7 @@ hello-revision - Print our "Hello <user>!" message
 
 SYNOPSIS
 --------
->     POST /changes/{change-id}/revisions/{revision-id}/cookbook-plugin~hello-revision
+>     POST /changes/{change-id}/revisions/{revision-id}/cookbook~hello-revision
 
 DESCRIPTION
 -----------
