@@ -23,6 +23,7 @@ import com.google.gerrit.extensions.common.InheritableBoolean;
 import com.google.gerrit.extensions.registration.DynamicSet;
 import com.google.gerrit.extensions.restapi.RestApiModule;
 import com.google.gerrit.extensions.webui.PatchSetWebLink;
+import com.google.gerrit.extensions.webui.ProjectWebLink;
 import com.google.gerrit.extensions.webui.TopMenu;
 import com.google.gerrit.server.config.ProjectConfigEntry;
 import com.google.inject.AbstractModule;
@@ -34,6 +35,7 @@ public class Module extends AbstractModule {
     DynamicSet.bind(binder(), TopMenu.class)
         .to(HelloTopMenu.class);
     DynamicSet.bind(binder(), PatchSetWebLink.class).to(HelloWeblink.class);
+    DynamicSet.bind(binder(), ProjectWebLink.class).to(HelloWeblink.class);
     install(new RestApiModule() {
       @Override
       protected void configure() {

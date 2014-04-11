@@ -15,11 +15,14 @@
 package com.googlesource.gerrit.plugins.cookbook;
 
 import com.google.gerrit.extensions.webui.PatchSetWebLink;
+import com.google.gerrit.extensions.webui.ProjectWebLink;
 
-public class HelloWeblink implements PatchSetWebLink {
+public class HelloWeblink implements PatchSetWebLink, ProjectWebLink {
   private String name = "HelloLink";
+  private String placeHolderUrlProject =
+      "http://my.hellolink.com/project=%s";
   private String placeHolderUrlProjectCommit =
-      "http://my.hellolink.com/project=%s/commit=%s";
+      placeHolderUrlProject + "/commit=%s";
 
   @Override
   public String getLinkName() {
@@ -29,5 +32,10 @@ public class HelloWeblink implements PatchSetWebLink {
   @Override
   public String getPatchSetUrl(String project, String commit) {
     return String.format(placeHolderUrlProjectCommit, project, commit);
+  }
+
+  @Override
+  public String getProjectUrl(String project) {
+    return String.format(placeHolderUrlProject, project);
   }
 }
